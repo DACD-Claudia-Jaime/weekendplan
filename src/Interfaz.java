@@ -82,4 +82,7 @@ public class Interfaz {
         });
         ventana.setVisible(true);
     }
+    public static void main(String[] args) {
+        new Interfaz();
+    }
 }
