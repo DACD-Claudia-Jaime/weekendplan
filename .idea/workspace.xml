@@ -7,7 +7,6 @@
     <list default="true" id="c08a4a17-03d1-47ab-85c2-02bdb98a0718" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/business-unit/src/main/java/com/proyecto1/businessunit/BusinessUnitGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/business-unit/src/main/java/com/proyecto1/businessunit/BusinessUnitGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/macbookpro/IdeaProjects/Proyecto1/src/main/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/macbookpro/IdeaProjects/Proyecto1/diagrams&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,6 +96,7 @@
       <recent name="com.proyecto1.eventfeeder.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/diagrams" />
       <recent name="$PROJECT_DIR$/src/main/java" />
       <recent name="$PROJECT_DIR$/.idea" />
     </key>
@@ -241,7 +241,8 @@
       <workItem from="1747501901545" duration="176000" />
       <workItem from="1747502265153" duration="1248000" />
       <workItem from="1747573918443" duration="8752000" />
-      <workItem from="1747599318494" duration="1726000" />
+      <workItem from="1747599318494" duration="3849000" />
+      <workItem from="1747607386097" duration="96000" />
     </task>
     <task id="LOCAL-00001" summary="init repository">
       <option name="closed" value="true" />
