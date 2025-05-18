@@ -14,6 +14,7 @@ public class BusinessUnitGUI extends JFrame {
     private JComboBox<String> destinationComboBox;
     private JButton searchFlightsButton;
     private JTextArea flightsTextArea;
+
     public BusinessUnitGUI(DatamartManager datamartManager) {
         this.datamartManager = datamartManager;
         setTitle("Business Unit - Eventos y Vuelos");
@@ -25,6 +26,7 @@ public class BusinessUnitGUI extends JFrame {
         tabbedPane.addTab("Vuelos", createFlightsPanel());
         add(tabbedPane);
     }
+
     private JPanel createEventsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel topPanel = new JPanel();
@@ -42,6 +44,7 @@ public class BusinessUnitGUI extends JFrame {
         searchEventsButton.addActionListener(e -> searchEvents());
         return panel;
     }
+
     private JPanel createFlightsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel topPanel = new JPanel();
@@ -61,37 +64,63 @@ public class BusinessUnitGUI extends JFrame {
         searchFlightsButton.addActionListener(e -> searchFlights());
         return panel;
     }
+
     private void searchEvents() {
         eventsTextArea.setText("");
         String ciudadSeleccionada = (String) cityComboBox.getSelectedItem();
+        if (ciudadSeleccionada == null || ciudadSeleccionada.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Seleccione una ciudad.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
             List<String> eventos = datamartManager.getAllSocialEvents();
             boolean hayResultados = false;
+
             for (String evento : eventos) {
                 if (evento.toLowerCase().contains(ciudadSeleccionada.toLowerCase())) {
-                    hayResultados = true;
                     String[] parts = evento.split("\\|");
-                    String artista = "", nombreEvento = "", tipo = "", ciudad = "", fecha = "";
 
-                    if (parts.length >= 4) {
+                    String artista = "(sin artista)";
+                    String nombreEvento = "(sin nombre)";
+                    String tipo = "(sin tipo)";
+                    String ciudad = "(sin ciudad)";
+                    String fecha = "(sin fecha)";
+
+                    if (parts.length >= 5) {
                         String[] artistaNombre = parts[0].split(" - ", 2);
-                        artista = artistaNombre.length > 0 ? artistaNombre[0].trim() : "";
-                        nombreEvento = artistaNombre.length > 1 ? artistaNombre[1].trim() : "";
-                        tipo = parts[1].trim();
-                        ciudad = parts[2].trim();
-                        fecha = parts[3].trim();
+                        if (artistaNombre.length >= 1 && !artistaNombre[0].trim().isEmpty()) {
+                            artista = artistaNombre[0].trim();
+                        }
+                        if (artistaNombre.length == 2 && !artistaNombre[1].trim().isEmpty()) {
+                            nombreEvento = artistaNombre[1].trim();
+                        }
+                        if (!parts[1].trim().isEmpty()) tipo = parts[1].trim();
+                        if (!parts[2].trim().isEmpty()) ciudad = parts[2].trim();
+                        if (!parts[3].trim().isEmpty()) fecha = parts[3].trim();
+
                     }
 
-                    if (nombreEvento.isEmpty()) nombreEvento = "(sin nombre)";
-                    if (tipo.isEmpty()) tipo = "(sin tipo)";
+                    if (
+                            artista.equals("(sin artista)") &&
+                                    nombreEvento.equals("(sin nombre)") &&
+                                    tipo.equals("(sin tipo)") &&
+                                    ciudad.equals("(sin ciudad)") &&
+                                    fecha.equals("(sin fecha)")
+                    ) {
+                        continue; // ignorar
+                    }
 
                     String textoFormateado = String.format(
                             "Evento: %s | Nombre: %s | Tipo: %s | Ciudad: %s | Fecha: %s",
                             artista, nombreEvento, tipo, ciudad, fecha
                     );
+
                     eventsTextArea.append(textoFormateado + "\n");
+                    hayResultados = true;
                 }
             }
+
             if (!hayResultados) {
                 eventsTextArea.setText("No se encontraron eventos para la ciudad seleccionada.");
             }
@@ -99,7 +128,8 @@ public class BusinessUnitGUI extends JFrame {
             eventsTextArea.setText("Error al acceder a la base de datos.");
             e.printStackTrace();
         }
-    }private void searchFlights() {
+    }
+    private void searchFlights() {
         flightsTextArea.setText("");
         try {
             List<String> vuelos = datamartManager.getAllFlights();
@@ -109,13 +139,16 @@ public class BusinessUnitGUI extends JFrame {
             if (origen.equals(destino)) {
                 flightsTextArea.setText("El origen y destino no pueden ser iguales.");
                 return;
-            } boolean hayResultados = false;
+            }
+
+            boolean hayResultados = false;
             for (String vuelo : vuelos) {
                 if (vuelo.contains(origen + " -> " + destino)) {
                     flightsTextArea.append(vuelo + "\n");
                     hayResultados = true;
                 }
             }
+
             if (!hayResultados) {
                 flightsTextArea.setText("No se encontraron vuelos para el origen y destino seleccionados.");
             }
