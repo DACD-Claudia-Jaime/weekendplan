@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DatamartManager {
 
-    private static final String DB_URL = "jdbc:sqlite:datamart.db";
+    private static final String DB_URL = "jdbc:sqlite:data.db";
     private Connection connection;
     public DatamartManager() throws SQLException {
         connection = DriverManager.getConnection(DB_URL);
@@ -41,7 +41,7 @@ public class DatamartManager {
         }
     }
     public void insertSocialEvent(String ts, String ss, String nombre, String ciudad, String fecha, double precio) throws SQLException {
-        String sql = "INSERT INTO social_events(ts, ss, nombre, ciudad, fecha, precio) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT OR IGNORE INTO social_events(ts, ss, nombre, ciudad, fecha, precio) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, ts);
             pstmt.setString(2, ss);
@@ -53,7 +53,7 @@ public class DatamartManager {
         }
     }
     public void insertFlight(String ts, String ss, String origen, String destino, String fecha, double precio) throws SQLException {
-        String sql = "INSERT INTO flights(ts, ss, origen, destino, fecha, precio) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT OR IGNORE INTO flights(ts, ss, origen, destino, fecha, precio) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, ts);
             pstmt.setString(2, ss);

@@ -7,17 +7,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.proyecto1</groupId>
-    <artifactId>ai-vuelos-eventos</artifactId>
+    <artifactId>weekendplan</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Proyecto1</name>
+    <name>weekendplan</name>
 
     <modules>
         <module>event-feeder</module>
         <module>flight-feeder</module>
         <module>event-store-builder</module>
-        <module>business-unit</module> <!-- Añadido el módulo business-unit -->
+        <module>business-unit</module>
     </modules>
 
     <properties>
