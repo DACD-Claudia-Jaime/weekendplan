@@ -9,7 +9,7 @@ Weekend Planner permite a los usuarios consultar eventos y vuelos de forma integ
 - Jaime Rivero Santana
 
 ## Repositorio del proyecto
-[Enlace al repositorio de GitHub](https://github.com/usuario/weekend-planner)
+[Enlace al repositorio de GitHub](https://github.com/DACD-Claudia-Jaime/weekendplan.git)
 
 ## Tecnologías utilizadas
 - Java 21
